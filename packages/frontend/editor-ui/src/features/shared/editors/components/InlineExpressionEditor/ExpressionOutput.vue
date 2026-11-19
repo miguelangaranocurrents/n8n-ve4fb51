@@ -88,11 +88,7 @@ const resolvedSegments = computed<Resolved[]>(() => {
 		.map((segment) => {
 			segment.from = cursor;
 			cursor +=
-				segment.kind === 'plaintext'
-					? segment.plaintext.length
-					: segment.resolved
-						? (segment.resolved as string | number | boolean).toString().length
-						: 0;
+				segment.kind === 'plaintext' ? segment.plaintext.length : String(segment.resolved).length;
 			segment.to = cursor;
 			return segment;
 		})
